@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Happy 5th Anniversary!!!</title>
+    <script src="pkg/phaser.js"></script>
+    <script src="src/Preloader.js"></script>
+    <script src="src/MainMenu.js"></script>
+    <script src="src/Level1.js"></script>
+    <!--<script src="src/Level2.js"></script>
+    <script src="src/Slime.js"></script>
+    <script src="src/Player.js"></script>-->
+
+</head>
+<body >
+    <script type="text/javascript">
+        var game = new Phaser.Game(800,600, Phaser.Auto);
+        game.state.add('preloader', MainGame.Preloader, true);
+        game.state.add('mainmenu', MainGame.MainMenu);
+        game.state.add('level1', MainGame.BunnyGame);
+        game.state.add('level2', MainGame.Level2);
+    </script>
+    </body>
+</html>
