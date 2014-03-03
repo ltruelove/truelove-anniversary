@@ -10,6 +10,8 @@ MainGame.Preloader.prototype = {
         this.game.load.image('mainbg', 'assets/img/main_bg.png');
         //this.game.load.spritesheet('alien', '/resources/p3_walk.png', 66, 93, 3);
         //this.game.load.atlas("alien", "/resources/p3_spritesheet.png","/resources/player_atlas.xml", null, Phaser.Loader.TEXTURE_ATLAS_XML_STARLING);
+        this.game.load.atlasXML("player", "/assets/sprites/p3_spritesheet.png","/assets/sprites/player_atlas.xml");
+        
     },
     create: function() {
         this.game.state.start('mainmenu');

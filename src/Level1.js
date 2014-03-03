@@ -1,6 +1,6 @@
 MainGame.BunnyGame = function(game) {
     this.game = game;
-    this.bunnySprite = null;
+    this.playerSprite = null;
     this.goalSprite = null;
     this.map = null;
     this.tileset = null;
@@ -23,31 +23,32 @@ MainGame.BunnyGame = function(game) {
 
 MainGame.BunnyGame.prototype = {
     preload: function(){
-        this.game.load.tilemap("platforms", "/resources/level1.json", null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.tileset("land", "/resources/tiles_spritesheet.png", this.tileWidth, this.tileHeight,144,0,1);
-        this.game.load.image('spikes', 'resources/coinGold.png');
-        game.load.audio('music', ['/resources/L1Audio.mp3']);
-        this.game.load.image('L1BG', 'resources/level1bg.png');
-        this.game.load.image('speech', 'resources/speech_bubble.png');
-        this.game.load.atlas("enemies", "/resources/enemies.png",
-        "/resources/enemies.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+        this.game.load.tilemap("platforms", "/assets/tilemaps/level1.json", null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.image("land", "/assets/tilemaps/tiles_spritesheet.png");
+        //, this.tileWidth, this.tileHeight,144,0,1
+        this.game.load.image('coin', '/assets/sprites/coinGold.png');
+        //game.load.audio('music', ['/resources/L1Audio.mp3']);
+        this.game.load.image('L1BG', '/assets/img/level1bg.png');
+        //this.game.load.image('speech', '/assets/sprites/speech_bubble.png');
+        //this.game.load.atlas("enemies", "/resources/enemies.png",
+        //"/resources/enemies.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     },
     
     create: function() {
         this.map = this.game.add.tilemap("platforms");
         this.game.stage.backgroundColor = '#000';
         this.background = this.game.add.tileSprite(0, 0, 1400, 3640, "L1BG");
-        this.tileset = this.game.add.tileset("land");
-        this.tileset.spacing = 1;
-        this.tileset.setCollisionRange(0, this.tileset.total-1, true, true, true, true);
+        this.map.addTilesetImage('sheet','land');
+        this.map.setCollisionBetween(1,143);
     
         // now we need to create a game layer, and assign it a tile set and a map
-        this.layer = this.game.add.tilemapLayer(0, 0, 800, 600, this.tileset, this.map, 0);
-        this.layer = this.game.add.tilemapLayer(0, 0, 800, 600, this.tileset, this.map, 1);
+        this.layer = this.map.createLayer('Tile Layer 1');
+        this.layer.resizeWorld();
     
         //this.music = game.add.audio('music');
         //this.music.play();
 
+        /*
         //create an array of objects containing slime positions
         var slimeSpots = [{x: 6, y: 47},
                          {x: 13, y: 44},
@@ -69,50 +70,52 @@ MainGame.BunnyGame.prototype = {
             slime.name = 'slime';
             this.slimeGroup.add(slime);
         }
+        */
 
         this.cursors = this.game.input.keyboard.createCursorKeys();
-
-        this.bunnySprite = new MainGame.Player(this.game, 10, 3400, this.cursors);
-        this.bunnySprite.animatePlayer();
+        this.game.physics.gravity.y = 1800;
+        
+        this.playerSprite = new MainGame.Player(this.game, 10, 3400, this.cursors);
+        this.playerSprite.animatePlayer();
 
         //add the goal sprite
         this.goalSprite = this.game.add.sprite((this.tilesWide - 1) * this.tileWidth,
-                                               this.tileHeight * 5,'spikes');
+                                               this.tileHeight * 5,'coin');
         this.goalSprite.name = 'goal';
         this.goalSprite.body.immovable = true;
     
         this.game.world.setBounds(0,0,this.tilesWide*this.tileWidth,
             this.tilesHigh*this.tileHeight); //setting the bounds of the entire level
-        this.game.camera.follow(this.bunnySprite); //bounds lets us set the camera to follow the character
+        this.game.camera.follow(this.playerSprite); //bounds lets us set the camera to follow the character
     },
     
     update: function(){
         //make the player collide with the world
-        this.game.physics.collide(this.bunnySprite, this.layer);
+        this.game.physics.collide(this.playerSprite, this.layer);
 
         //make the test enemy collide with the world
         //this.game.physics.collide(this.slime, this.layer);
-        this.slimeGroup.forEach(this.slimeUpdate, this);
-        this.game.physics.collide(this.bunnySprite, this.slimeGroup, this.slimePlayerCollision, null, this);
-        this.slimeGroup.callAll('update',null);
+        //this.slimeGroup.forEach(this.slimeUpdate, this);
+        //this.game.physics.collide(this.playerSprite, this.slimeGroup, this.slimePlayerCollision, null, this);
+        //this.slimeGroup.callAll('update',null);
 
         //handle the collision of the player and the goal
-        this.game.physics.collide(this.bunnySprite, this.goalSprite, this.goalCollision, null, this);
+        this.game.physics.collide(this.playerSprite, this.goalSprite, this.goalCollision, null, this);
 
         // are we moving left?
         if (this.cursors.left.isDown){
-            if(this.bunnySprite.position.x > 0 && this.game.camera.view.x > 0){
+            if(this.playerSprite.position.x > 0 && this.game.camera.view.x > 0){
                 this.background.tilePosition.x += .1;
             }
         }
         // are we moving right?
         if (this.cursors.right.isDown){
-            if(this.bunnySprite.position.x < (this.tileWidth * this.tilesWide - this.width)){
+            if(this.playerSprite.position.x < (this.tileWidth * this.tilesWide - this.width)){
                 this.background.tilePosition.x -= .1;
             }
         }
 
-        this.bunnySprite.updatePlayer();
+        this.playerSprite.updatePlayer();
     },
 
     goalCollision: function(player, goal){
