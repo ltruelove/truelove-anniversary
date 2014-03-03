@@ -84,9 +84,11 @@ MainGame.BunnyGame.prototype = {
         this.goalSprite.name = 'goal';
         this.goalSprite.body.immovable = true;
     
-        this.game.world.setBounds(0,0,this.tilesWide*this.tileWidth,
-            this.tilesHigh*this.tileHeight); //setting the bounds of the entire level
-        this.game.camera.follow(this.playerSprite); //bounds lets us set the camera to follow the character
+        //setting the bounds of the entire level
+        this.game.world.setBounds(0,0,this.tilesWide*this.tileWidth,this.tilesHigh*this.tileHeight); 
+
+        //bounds lets us set the camera to follow the character
+        this.game.camera.follow(this.playerSprite); 
     },
     
     update: function(){
