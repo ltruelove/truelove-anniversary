@@ -1,0 +1,124 @@
+{"frames": {
+
+"jen_hurt.png":
+{
+	"frame": {"x":0,"y":0,"w":43,"h":93},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":43,"h":93},
+	"sourceSize": {"w":43,"h":93}
+},
+"jen_jump.png":
+{
+	"frame": {"x":44,"y":0,"w":41,"h":93},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":93},
+	"sourceSize": {"w":41,"h":93}
+},
+"jen_walk01.png":
+{
+	"frame": {"x":0,"y":94,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk02.png":
+{
+	"frame": {"x":42,"y":94,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk03.png":
+{
+	"frame": {"x":84,"y":94,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk04.png":
+{
+	"frame": {"x":0,"y":191,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk05.png":
+{
+	"frame": {"x":42,"y":191,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk06.png":
+{
+	"frame": {"x":84,"y":191,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk07.png":
+{
+	"frame": {"x":0,"y":288,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk08.png":
+{
+	"frame": {"x":42,"y":288,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk09.png":
+{
+	"frame": {"x":84,"y":288,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk10.png":
+{
+	"frame": {"x":0,"y":385,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk11.png":
+{
+	"frame": {"x":42,"y":385,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+},
+"jen_walk12.png":
+{
+	"frame": {"x":84,"y":385,"w":41,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":96},
+	"sourceSize": {"w":41,"h":96}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "jen_spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":126,"h":481},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:671a300be9e1db2271ccb15c370a5c90:7415a0fc0a0e5d61f99e3a1fc0b7cf8f:f2a227a01d4bcffe8e462fc25f01cc90$"
+}
+}
