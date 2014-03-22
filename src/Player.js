@@ -10,6 +10,8 @@ MainGame.Player = function(game, xPos, yPos, cursors) {
 
     Phaser.Sprite.call(this, game, xPos, yPos, this.atlasName);
     game.add.existing(this);
+    game.physics.enable(this, Phaser.Physics.ARCADE);
+    
 };
 
 // set-up the "class" to inherit from 'SomeBaseClass'

@@ -73,7 +73,7 @@ MainGame.BunnyGame.prototype = {
         */
 
         this.cursors = this.game.input.keyboard.createCursorKeys();
-        this.game.physics.gravity.y = 1800;
+        this.game.physics.arcade.gravity.y = 1800;
         
         this.playerSprite = new MainGame.Player(this.game, 10, 3400, this.cursors);
         this.playerSprite.animatePlayer();
@@ -81,6 +81,7 @@ MainGame.BunnyGame.prototype = {
         //add the goal sprite
         this.goalSprite = this.game.add.sprite((this.tilesWide - 1) * this.tileWidth,
                                                this.tileHeight * 5,'coin');
+        this.game.physics.enable(this.goalSprite, Phaser.Physics.ARCADE);
         this.goalSprite.name = 'goal';
         this.goalSprite.body.immovable = true;
     
@@ -93,7 +94,7 @@ MainGame.BunnyGame.prototype = {
     
     update: function(){
         //make the player collide with the world
-        this.game.physics.collide(this.playerSprite, this.layer);
+        this.game.physics.arcade.collide(this.playerSprite, this.layer);
 
         //make the test enemy collide with the world
         //this.game.physics.collide(this.slime, this.layer);
@@ -102,7 +103,7 @@ MainGame.BunnyGame.prototype = {
         //this.slimeGroup.callAll('update',null);
 
         //handle the collision of the player and the goal
-        this.game.physics.collide(this.playerSprite, this.goalSprite, this.goalCollision, null, this);
+        this.game.physics.arcade.collide(this.playerSprite, this.goalSprite, this.goalCollision, null, this);
 
         // are we moving left?
         if (this.cursors.left.isDown){
