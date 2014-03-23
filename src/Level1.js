@@ -39,10 +39,12 @@ MainGame.BunnyGame.prototype = {
         this.game.stage.backgroundColor = '#000';
         this.background = this.game.add.tileSprite(0, 0, 1400, 3640, "L1BG");
         this.map.addTilesetImage('sheet','land');
-        this.map.setCollisionBetween(1,143);
     
         // now we need to create a game layer, and assign it a tile set and a map
         this.layer = this.map.createLayer('Tile Layer 1');
+
+        this.map.setCollisionByExclusion([]);
+
         this.layer.resizeWorld();
     
         //this.music = game.add.audio('music');
@@ -119,6 +121,10 @@ MainGame.BunnyGame.prototype = {
         }
 
         this.playerSprite.updatePlayer();
+    },
+
+    render: function(){
+        this.game.debug.body(this.playerSprite);
     },
 
     goalCollision: function(player, goal){
