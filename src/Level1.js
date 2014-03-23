@@ -18,7 +18,8 @@ MainGame.BunnyGame = function(game) {
     this.walkFrames = null;
     this.playerAnimFrames = 15;
     this.slime = null;
-    this.slimeGroup = null;
+    this.slimegroup = null;
+    this.isDefeated = false;
 };
 
 MainGame.BunnyGame.prototype = {
@@ -29,12 +30,13 @@ MainGame.BunnyGame.prototype = {
         this.game.load.image('coin', '/assets/sprites/coinGold.png');
         //game.load.audio('music', ['/resources/L1Audio.mp3']);
         this.game.load.image('L1BG', '/assets/img/level1bg.png');
-        //this.game.load.image('speech', '/assets/sprites/speech_bubble.png');
+        this.game.load.image('speech', '/assets/sprites/speech_bubble.png');
         //this.game.load.atlas("enemies", "/resources/enemies.png",
         //"/resources/enemies.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     },
     
     create: function() {
+        //this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.map = this.game.add.tilemap("platforms");
         this.game.stage.backgroundColor = '#000';
         this.background = this.game.add.tileSprite(0, 0, 1400, 3640, "L1BG");
@@ -86,6 +88,7 @@ MainGame.BunnyGame.prototype = {
         this.game.physics.enable(this.goalSprite, Phaser.Physics.ARCADE);
         this.goalSprite.name = 'goal';
         this.goalSprite.body.immovable = true;
+        this.goalSprite.body.allowGravity = false;
     
         //setting the bounds of the entire level
         this.game.world.setBounds(0,0,this.tilesWide*this.tileWidth,this.tilesHigh*this.tileHeight); 
@@ -97,6 +100,7 @@ MainGame.BunnyGame.prototype = {
     update: function(){
         //make the player collide with the world
         this.game.physics.arcade.collide(this.playerSprite, this.layer);
+        this.game.physics.arcade.collide(this.goalSprite, this.layer);
 
         //make the test enemy collide with the world
         //this.game.physics.collide(this.slime, this.layer);
@@ -130,20 +134,24 @@ MainGame.BunnyGame.prototype = {
     goalCollision: function(player, goal){
         //goal.destroy();
 
-        this.speechBubble = this.game.add.sprite((this.tilesWide - 3) * this.tileWidth,
-                                               this.tileHeight * 2,'speech');
-        this.speechBubble.name = 'speechBubble';
-        this.speechBubble.body.immovable = true;
+        if(!this.isDefeated){
+            this.isDefeated = true;
+            this.speechBubble = this.game.add.sprite((this.tilesWide - 3) * this.tileWidth,
+                                                   this.tileHeight * 2,'speech');
+            this.speechBubble.name = 'speechBubble';
+            this.game.physics.enable(this.speechBubble, Phaser.Physics.ARCADE);
+            this.speechBubble.body.allowGravity = false;
 
-        var text = game.add.text((this.tilesWide - 3) * this.tileWidth + 5,
-            2 * this.tileHeight + 5,
-            "You have defeated level 1!\n Click to move on to level 2.",
-            {
-                font: "15px Arial",
-                fill: "#000",
-                align: "left"
-            });
-        this.game.input.onDown.addOnce(this.nextLevel, this);
+            var text = game.add.text((this.tilesWide - 3) * this.tileWidth + 5,
+                2 * this.tileHeight + 5,
+                "You have defeated level 1!\n Click to move on to level 2.",
+                {
+                    font: "15px Arial",
+                    fill: "#000",
+                    align: "left"
+                });
+            this.game.input.onDown.addOnce(this.nextLevel, this);
+        }
 
     },
 
