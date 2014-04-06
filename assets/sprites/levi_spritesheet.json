@@ -1,0 +1,20 @@
+{"frames": {
+
+"levi.png":
+{
+	"frame": {"x":0,"y":0,"w":32,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":90},
+	"sourceSize": {"w":32,"h":90}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "levi_spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":33,"h":90},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0eb0a94d1e9d4134bb275c7d7853ffc4:4231a584d069c10b748f8f14836f4c85:0c218567d2f548a853d77d087395d2a1$"
+}
+}

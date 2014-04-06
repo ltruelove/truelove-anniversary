@@ -1,0 +1,36 @@
+{"frames": {
+
+"snake_walk01.png":
+{
+	"frame": {"x":0,"y":0,"w":128,"h":33},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":33},
+	"sourceSize": {"w":128,"h":33}
+},
+"snake_walk02.png":
+{
+	"frame": {"x":0,"y":34,"w":113,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":113,"h":44},
+	"sourceSize": {"w":113,"h":44}
+},
+"snake_walk03.png":
+{
+	"frame": {"x":0,"y":79,"w":98,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":45},
+	"sourceSize": {"w":98,"h":45}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "snake.png",
+	"format": "RGBA8888",
+	"size": {"w":129,"h":124},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:040489a7865c12b61352bec2b7e48843:11bcb8dabd99ee2ef3f2f409917020c4:2a194967d71da88bdc69ff162da0bdf1$"
+}
+}
