@@ -29,7 +29,7 @@ MainGame.Player.prototype.animatePlayer = function (){
     this.animations.add('hurt',["jen_hurt.png"], this.animFrameCount , false);
     
     // Set Anchor to the center of your sprite
-    //this.anchor.set(0.5,0);
+    this.anchor.set(0.5,0);
     this.name = 'player';
     //this.body.linearDamping = 1;
     this.body.collideWorldBounds = true;
@@ -45,7 +45,7 @@ MainGame.Player.prototype.updatePlayer = function() {
             this.body.velocity.x = -1 * this.speed;
             // Invert scale.x to flip left/right
             this.scale.x = -1;
-            this.anchor.set(1,0);
+            //this.anchor.set(1,0);
             if(this.body.onFloor()){
                 this.animations.play('walk',this.animFrameCount,true);
             }
@@ -54,7 +54,7 @@ MainGame.Player.prototype.updatePlayer = function() {
         if (this.cursors.right.isDown){
             this.body.velocity.x = this.speed;
             this.scale.x = 1;
-            this.anchor.set(0,0);
+            //this.anchor.set(.5,0);
                 this.animations.play('walk',this.animFrameCount,true);
         }
 

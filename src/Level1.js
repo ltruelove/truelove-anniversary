@@ -26,7 +26,6 @@ MainGame.BunnyGame.prototype = {
     preload: function(){
         this.game.load.tilemap("platforms", "/assets/tilemaps/level1.json", null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image("land", "/assets/tilemaps/tiles_spritesheet.png");
-        //, this.tileWidth, this.tileHeight,144,0,1
         this.game.load.image('coin', '/assets/sprites/coinGold.png');
         //game.load.audio('music', ['/resources/L1Audio.mp3']);
         this.game.load.image('L1BG', '/assets/img/level1bg.png');
