@@ -2,15 +2,15 @@
 
 "snake_walk01.png":
 {
-	"frame": {"x":0,"y":0,"w":128,"h":33},
+	"frame": {"x":0,"y":0,"w":98,"h":45},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":33},
-	"sourceSize": {"w":128,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":45},
+	"sourceSize": {"w":98,"h":45}
 },
 "snake_walk02.png":
 {
-	"frame": {"x":0,"y":34,"w":113,"h":44},
+	"frame": {"x":0,"y":46,"w":113,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":113,"h":44},
@@ -18,11 +18,11 @@
 },
 "snake_walk03.png":
 {
-	"frame": {"x":0,"y":79,"w":98,"h":45},
+	"frame": {"x":0,"y":91,"w":128,"h":33},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":45},
-	"sourceSize": {"w":98,"h":45}
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":33},
+	"sourceSize": {"w":128,"h":33}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
@@ -31,6 +31,6 @@
 	"format": "RGBA8888",
 	"size": {"w":129,"h":124},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:040489a7865c12b61352bec2b7e48843:11bcb8dabd99ee2ef3f2f409917020c4:2a194967d71da88bdc69ff162da0bdf1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ea4723c87926adc7f269149fb531cacd:789c013652560a718d74c5cbd0683346:2a194967d71da88bdc69ff162da0bdf1$"
 }
 }

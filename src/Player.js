@@ -11,7 +11,6 @@ MainGame.Player = function(game, xPos, yPos, cursors) {
     Phaser.Sprite.call(this, game, xPos, yPos, this.atlasName);
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
-    
 };
 
 // set-up the "class" to inherit from 'SomeBaseClass'
@@ -45,7 +44,6 @@ MainGame.Player.prototype.updatePlayer = function() {
             this.body.velocity.x = -1 * this.speed;
             // Invert scale.x to flip left/right
             this.scale.x = -1;
-            //this.anchor.set(1,0);
             if(this.body.onFloor()){
                 this.animations.play('walk',this.animFrameCount,true);
             }
@@ -54,7 +52,6 @@ MainGame.Player.prototype.updatePlayer = function() {
         if (this.cursors.right.isDown){
             this.body.velocity.x = this.speed;
             this.scale.x = 1;
-            //this.anchor.set(.5,0);
                 this.animations.play('walk',this.animFrameCount,true);
         }
 
@@ -67,7 +64,7 @@ MainGame.Player.prototype.updatePlayer = function() {
         if(this.body.onFloor()){
             //did we press the jump key?
             if (this.cursors.up.isDown){
-                this.body.velocity.y = -1100;
+                this.body.velocity.y = -950;
             }
         }else{
             this.animations.stop('walk');

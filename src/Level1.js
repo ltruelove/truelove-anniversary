@@ -24,6 +24,7 @@ MainGame.BunnyGame = function(game) {
 
 MainGame.BunnyGame.prototype = {
     preload: function(){
+        this.game.load.atlasJSONHash("levi", "/assets/sprites/levi_spritesheet.png","/assets/sprites/levi_spritesheet.json");
         this.game.load.tilemap("platforms", "/assets/tilemaps/level1.json", null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image("land", "/assets/tilemaps/tiles_spritesheet.png");
         this.game.load.image('coin', '/assets/sprites/coinGold.png');
@@ -49,30 +50,37 @@ MainGame.BunnyGame.prototype = {
 
         this.layer.resizeWorld();
     
+        //add the goal sprite
+        this.goalSprite = this.game.add.sprite((this.tilesWide - 1) * this.tileWidth,
+                                               this.tileHeight * 2,'levi');
+        this.game.physics.enable(this.goalSprite, Phaser.Physics.ARCADE);
+        this.goalSprite.name = 'goal';
+        this.goalSprite.body.immovable = true;
+
         //this.music = game.add.audio('music');
         //this.music.play();
 
         //create an array of objects containing slime positions
-        var snakeSpots = [{x: 6, y: 47},
-                         {x: 13, y: 44},
-                         {x: 3, y: 39},
-                         {x: 17, y: 32},
+        var snakeSpots = [{x: 6, y: 46},
+                         {x: 13, y: 43},
+                         {x: 3, y: 38},
+                         {x: 17, y: 31},
                          {x: 6, y: 32},
-                         {x: 19, y: 28},
-                         {x: 12, y: 24},
-                         {x: 1, y: 23},
-                         {x: 14, y: 5},
-                         {x: 19, y: 5}];
+                         {x: 19, y: 27},
+                         {x: 12, y: 23},
+                         {x: 1, y: 22},
+                         {x: 14, y: 4},
+                         {x: 19, y: 4}];
         
         //add a group of test enemies
         this.snakeGroup = this.game.add.group();
         for(var i = 0; i < 10; i++){
             var snakePos = snakeSpots[i];
-            //slime = new MainGame.Slime(this.game, slimePos.x * this.tileWidth, slimePos.y * this.tileHeight);
-            //slime.animateSlime();
             
             var snake = this.game.add.sprite(snakePos.x * this.tileWidth, snakePos.y * this.tileHeight,'snake');
             this.game.physics.enable(snake, Phaser.Physics.ARCADE);
+            snake.body.collideWorldBounds = true;
+
             var walkFrames = Phaser.Animation.generateFrameNames('snake_walk', 1, 3, '.png', 2);
             snake.animations.add('walk', this.walkFrames, 10 ,true);
             snake.animations.play('walk',10,true);
@@ -82,21 +90,12 @@ MainGame.BunnyGame.prototype = {
         }
 
         this.cursors = this.game.input.keyboard.createCursorKeys();
-        this.game.physics.arcade.gravity.y = 1800;
+        this.game.physics.arcade.gravity.y = 1400;
         
-        this.playerSprite = new MainGame.Player(this.game, 10, 3400, this.cursors);
+        this.playerSprite = new MainGame.Player(this.game, 10, 3300, this.cursors);
         this.playerSprite.body.velocity.setTo(0,0);
         this.playerSprite.animatePlayer();
 
-
-        //add the goal sprite
-        this.goalSprite = this.game.add.sprite((this.tilesWide - 1) * this.tileWidth,
-                                               this.tileHeight * 5,'coin');
-        this.game.physics.enable(this.goalSprite, Phaser.Physics.ARCADE);
-        this.goalSprite.name = 'goal';
-        this.goalSprite.body.immovable = true;
-        this.goalSprite.body.allowGravity = false;
-    
         //setting the bounds of the entire level
         this.game.world.setBounds(0,0,this.tilesWide*this.tileWidth,this.tilesHigh*this.tileHeight); 
 
@@ -106,9 +105,9 @@ MainGame.BunnyGame.prototype = {
     
     update: function(){
         //make the player collide with the world
+        this.game.physics.arcade.collide(this.snakeGroup, this.layer);
         this.game.physics.arcade.collide(this.playerSprite, this.layer);
         this.game.physics.arcade.collide(this.goalSprite, this.layer);
-        this.game.physics.arcade.collide(this.snakeGroup, this.layer);
         //this.snakeGroup.forEach(this.snakeUpdate, this);
 
         //make the test enemy collide with the world
@@ -154,7 +153,7 @@ MainGame.BunnyGame.prototype = {
 
             var text = game.add.text((this.tilesWide - 3) * this.tileWidth + 5,
                 2 * this.tileHeight + 5,
-                "You have defeated level 1!\n Click to move on to level 2.",
+                "I've had a pretty great year.\nBut there's one thing that\nwould make it better.",
                 {
                     font: "15px Arial",
                     fill: "#000",
