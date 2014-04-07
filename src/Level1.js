@@ -20,6 +20,9 @@ MainGame.BunnyGame = function(game) {
     this.slime = null;
     this.slimegroup = null;
     this.isDefeated = false;
+    this.timer = null;
+    this.ring1 = null;
+    this.ring2 = null;
 };
 
 MainGame.BunnyGame.prototype = {
@@ -27,7 +30,8 @@ MainGame.BunnyGame.prototype = {
         this.game.load.atlasJSONHash("levi", "/assets/sprites/levi_spritesheet.png","/assets/sprites/levi_spritesheet.json");
         this.game.load.tilemap("platforms", "/assets/tilemaps/level1.json", null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image("land", "/assets/tilemaps/tiles_spritesheet.png");
-        this.game.load.image('coin', '/assets/sprites/coinGold.png');
+        this.game.load.image('ring1', '/assets/sprites/ring1.png');
+        this.game.load.image('ring2', '/assets/sprites/ring2.png');
         //game.load.audio('music', ['/resources/L1Audio.mp3']);
         this.game.load.image('L1BG', '/assets/img/level1bg.png');
         this.game.load.image('speech', '/assets/sprites/speech_bubble.png');
@@ -135,14 +139,12 @@ MainGame.BunnyGame.prototype = {
     },
 
     render: function(){
-        this.game.debug.body(this.playerSprite);
-        this.game.debug.spriteInfo(this.playerSprite, 20, 32);
+        //this.game.debug.body(this.playerSprite);
+        //this.game.debug.spriteInfo(this.playerSprite, 20, 32);
 
     },
 
     goalCollision: function(player, goal){
-        //goal.destroy();
-
         if(!this.isDefeated){
             this.isDefeated = true;
             this.speechBubble = this.game.add.sprite((this.tilesWide - 3) * this.tileWidth,
@@ -159,9 +161,25 @@ MainGame.BunnyGame.prototype = {
                     fill: "#000",
                     align: "left"
                 });
-            this.game.input.onDown.addOnce(this.nextLevel, this);
+
+            this.timer = this.game.time.create(false);
+            this.timer.add(2000,this.showRing1,this);
+            this.timer.start();
         }
 
+    },
+
+    showRing1: function(){
+        this.ring1 = this.game.add.sprite(this.game.camera.x,this.game.camera.y,'ring1');
+        this.ring2 = this.game.add.sprite(this.game.camera.x,this.game.camera.y,'ring2');
+        this.ring2.alpha = 0;
+
+        this.timer.add(2500,this.showRing2,this);
+        this.timer.start();
+    },
+
+    showRing2: function(){
+        this.game.add.tween(this.ring2).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
     },
 
     nextLevel: function(){
