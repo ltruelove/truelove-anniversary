@@ -7,10 +7,12 @@ MainGame.Player = function(game, xPos, yPos, cursors) {
     this.isHurt = false;
     this.hurtCount = 0;
     this.cursors = cursors;
+    this.jumpSound = null;
 
     Phaser.Sprite.call(this, game, xPos, yPos, this.atlasName);
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
+
 };
 
 // set-up the "class" to inherit from 'SomeBaseClass'
@@ -32,6 +34,8 @@ MainGame.Player.prototype.animatePlayer = function (){
     this.name = 'player';
     //this.body.linearDamping = 1;
     this.body.collideWorldBounds = true;
+
+    this.jumpSound = this.game.add.audio('jump');
 };
 
 MainGame.Player.prototype.updatePlayer = function() {
@@ -64,6 +68,7 @@ MainGame.Player.prototype.updatePlayer = function() {
         if(this.body.onFloor()){
             //did we press the jump key?
             if (this.cursors.up.isDown){
+                this.jumpSound.play();
                 this.body.velocity.y = -950;
             }
         }else{

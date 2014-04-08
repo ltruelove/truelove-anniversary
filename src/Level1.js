@@ -23,6 +23,7 @@ MainGame.BunnyGame = function(game) {
     this.timer = null;
     this.ring1 = null;
     this.ring2 = null;
+    this.hurtSound = null;
 };
 
 MainGame.BunnyGame.prototype = {
@@ -32,11 +33,10 @@ MainGame.BunnyGame.prototype = {
         this.game.load.image("land", "/assets/tilemaps/tiles_spritesheet.png");
         this.game.load.image('ring1', '/assets/sprites/ring1.png');
         this.game.load.image('ring2', '/assets/sprites/ring2.png');
-        //game.load.audio('music', ['/resources/L1Audio.mp3']);
+        this.game.load.audio('music', '/assets/audio/L1Audio.mp3');
+        this.game.load.audio('hurt', '/assets/audio/hurt.mp3');
         this.game.load.image('L1BG', '/assets/img/level1bg.png');
         this.game.load.image('speech', '/assets/sprites/speech_bubble.png');
-        //this.game.load.atlas("enemies", "/resources/enemies.png",
-        //"/resources/enemies.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
         this.game.load.atlasJSONHash("snake", "/assets/sprites/snake.png","/assets/sprites/snake.json");
     },
     
@@ -61,8 +61,9 @@ MainGame.BunnyGame.prototype = {
         this.goalSprite.name = 'goal';
         this.goalSprite.body.immovable = true;
 
-        //this.music = game.add.audio('music');
-        //this.music.play();
+        this.hurtSound = this.game.add.audio('hurt');
+        this.music = this.game.add.audio('music');
+        this.music.play();
 
         //create an array of objects containing slime positions
         var snakeSpots = [{x: 6, y: 44},
@@ -104,6 +105,7 @@ MainGame.BunnyGame.prototype = {
     },
     
     update: function(){
+        this.music.volume = .3;
         //make the player collide with the world
         this.game.physics.arcade.collide(this.snakeGroup, this.layer);
         this.game.physics.arcade.collide(this.playerSprite, this.layer);
@@ -177,6 +179,7 @@ MainGame.BunnyGame.prototype = {
             player.animations.play('jump',player.animFrameCount,true);
         }else{
             player.hurtCount = 30;
+            this.hurtSound.play();
             if(player.body.touching.left && snake.body.touching.right){
                 player.body.velocity.y = -450;
                 player.body.velocity.x = 300;
